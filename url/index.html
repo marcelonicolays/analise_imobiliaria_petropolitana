@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imóvel Value - UCP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-container">
+        <div class="background-overlay"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="ucp-logo">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="title-container">
+                        <h1>ImóvelValue</h1>
+                        <p class="subtitle">Sistema de Avaliação de Imóveis - UCP</p>
+                        <p class="project-info">PAE - Projetos e Atividades de Extensão</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <p>Preencha todos os campos abaixo para obter uma estimativa precisa do valor do seu imóvel em Petrópolis.</p>
+        </div>
+
+        <div class="form-container">
+            <form id="propertyForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cidade">
+                            <i class="fas fa-city"></i> Cidade
+                        </label>
+                        <input type="text" id="cidade" name="cidade" value="Petrópolis" readonly class="readonly-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bairro">
+                            <i class="fas fa-map-marker-alt"></i> Bairro
+                        </label>
+                        <select id="bairro" name="bairro" required>
+                            <option value="">Selecione o bairro</option>
+                            <option value="Centro">Centro</option>
+                            <option value="Quitandinha">Quitandinha</option>
+                            <option value="Corrêas">Corrêas</option>
+                            <option value="Itaipava">Itaipava</option>
+                            <option value="Posse">Posse</option>
+                            <option value="Alto da Serra">Alto da Serra</option>
+                            <option value="Valparaíso">Valparaíso</option>
+                            <option value="Cascatinha">Cascatinha</option>
+                            <option value="Independência">Independência</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tamanho">
+                            <i class="fas fa-vector-square"></i> Tamanho (m²)
+                        </label>
+                        <input type="number" id="tamanho" name="tamanho" min="1" placeholder="Ex: 120" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quartos">
+                            <i class="fas fa-bed"></i> Quartos
+                        </label>
+                        <select id="quartos" name="quartos" required>
+                            <option value="">Selecione</option>
+                            <option value="1">1 quarto</option>
+                            <option value="2">2 quartos</option>
+                            <option value="3">3 quartos</option>
+                            <option value="4">4 quartos</option>
+                            <option value="5+">5 ou mais quartos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="banheiros">
+                            <i class="fas fa-bath"></i> Banheiros
+                        </label>
+                        <select id="banheiros" name="banheiros" required>
+                            <option value="">Selecione</option>
+                            <option value="1">1 banheiro</option>
+                            <option value="2">2 banheiros</option>
+                            <option value="3">3 banheiros</option>
+                            <option value="4+">4 ou mais banheiros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="iptu">
+                            <i class="fas fa-file-invoice-dollar"></i> IPTU (R$)
+                        </label>
+                        <input type="number" id="iptu" name="iptu" min="0" step="0.01" placeholder="Ex: 2500.00" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="condominio">
+                            <i class="fas fa-building"></i> Condomínio (R$)
+                        </label>
+                        <input type="number" id="condominio" name="condominio" min="0" step="0.01" placeholder="Ex: 500.00" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-calculator"></i> Calcular Valor do Imóvel
+                </button>
+            </form>
+        </div>
+
+        <div class="result-container" id="resultContainer">
+            <h2>Valor Estimado do Imóvel</h2>
+            <div class="result-value" id="resultValue">R$ 0,00</div>
+            <p>Esta é uma estimativa baseada nos dados fornecidos e em nosso algoritmo de avaliação.</p>
+            
+            <div class="result-details">
+                <div class="detail-item">
+                    <div class="label">Cidade/Bairro</div>
+                    <div class="value" id="resultLocation">-</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">Tamanho</div>
+                    <div class="value" id="resultSize">- m²</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">Quartos/Banheiros</div>
+                    <div class="value" id="resultRooms">-</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">Custos Mensais</div>
+                    <div class="value" id="resultCosts">R$ 0,00</div>
+                </div>
+            </div>
+            
+            <button type="button" class="btn-new-calculation" id="btnNewCalculation">
+                <i class="fas fa-redo-alt"></i> Novo Cálculo
+            </button>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>Imóvel Value &copy; 2025-2 - PAE - Projetos e Atividades de Extensão</p>
+                <p>Universidade Católica de Petrópolis</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
